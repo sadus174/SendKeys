@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace send_keys
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
         [DllImport("user32.dll", SetLastError = true)]
@@ -39,7 +39,7 @@ namespace send_keys
         }
 
         //Инициализация формы и ее объектов
-        public Form1()
+        public MainForm()
         {
             TopMost = true;
             InitializeComponent();

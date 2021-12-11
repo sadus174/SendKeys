@@ -1,6 +1,6 @@
 ﻿namespace send_keys
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
