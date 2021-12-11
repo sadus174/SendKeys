@@ -113,7 +113,7 @@ namespace send_keys
         //int lkm_x = 126;
         //int lkm_y = 495;
         //Переменная типа MousePoint для запоминания нужного местоположения курсора
-        MouseOperations.MousePoint lkm_mousepoint = new MouseOperations.MousePoint(495,126);
+        MouseOperations.MousePoint lkm_mousepoint = new MouseOperations.MousePoint(126,495);
         MouseOperations.MousePoint pkm_mousepoint = new MouseOperations.MousePoint(63, 416);
 
         //Использование в качестве разделителя целой и дробной части , и .
