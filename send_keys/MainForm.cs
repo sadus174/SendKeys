@@ -17,21 +17,104 @@ namespace send_keys
 {
     public partial class MainForm : Form
     {
+        public class MouseOperations
+        {
+            [Flags]
+            public enum MouseEventFlags
+            {
+                LeftDown = 0x00000002,
+                LeftUp = 0x00000004,
+                MiddleDown = 0x00000020,
+                MiddleUp = 0x00000040,
+                Move = 0x00000001,
+                Absolute = 0x00008000,
+                RightDown = 0x00000008,
+                RightUp = 0x00000010
+            }
 
+            [DllImport("user32.dll", EntryPoint = "SetCursorPos")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            private static extern bool SetCursorPos(int x, int y);
+
+            [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            private static extern bool GetCursorPos(out MousePoint lpMousePoint);
+
+            [DllImport("user32.dll")]
+            private static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
+
+            public static void SetCursorPosition(int x, int y)
+            {
+                SetCursorPos(x, y);
+            }
+
+            public static void SetCursorPosition(MousePoint point)
+            {
+                SetCursorPos(point.X, point.Y);
+            }
+
+            public static MousePoint GetCursorPosition()
+            {
+                MousePoint currentMousePoint;
+                var gotPoint = GetCursorPos(out currentMousePoint);
+                if (!gotPoint) { currentMousePoint = new MousePoint(0, 0); }
+                return currentMousePoint;
+            }
+
+            public static void MouseEvent(MouseEventFlags value,MousePoint mousePoint)
+            {
+                mouse_event
+                    ((int)value,
+                     mousePoint.X,
+                     mousePoint.Y,
+                     0,
+                     0)
+                    ;
+            }
+
+            [StructLayout(LayoutKind.Sequential)]
+            public struct MousePoint
+            {
+                public int X;
+                public int Y;
+
+                public MousePoint(int x, int y)
+                {
+                    X = x;
+                    Y = y;
+                }
+            }
+        }
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool BringWindowToTop(IntPtr hWnd);
-
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool SetForegroundWindow(IntPtr hWnd);
+        //Для отслеживания ПКМ и ЛКМ и фиксации координат
+        [DllImport("user32.dll")]
+        public static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
+        
+        bool isLButtonDown()
+        {
+            Int16 state = GetAsyncKeyState(Keys.LButton);
+            return (state & 0x8000) != 0;
+        }
 
         public int count_pos;
         IntPtr windows_Handle;
         string name_window;
         int timer1;
         int timer2;
+
+        //Координаты для перемещений курсора мыши
+        //int pkm_x = 63;
+        //int pkm_y = 416;
+        //int lkm_x = 126;
+        //int lkm_y = 495;
+        //Переменная типа MousePoint для запоминания нужного местоположения курсора
+        MouseOperations.MousePoint lkm_mousepoint = new MouseOperations.MousePoint(495,126);
+        MouseOperations.MousePoint pkm_mousepoint = new MouseOperations.MousePoint(63, 416);
 
         //Использование в качестве разделителя целой и дробной части , и .
         public int set_dec_separation (string value)
@@ -51,9 +134,8 @@ namespace send_keys
         private void Form1_Load(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = ("Программа не активна");
-
-            //this.FormBorderStyle = FormBorderStyle.None;
-            //this.Location = new Point(0, 980);
+            button1.Text = $"ЛКМ {lkm_mousepoint.X}:{lkm_mousepoint.Y}";
+            button5.Text = $"ПКМ {pkm_mousepoint.X}:{pkm_mousepoint.Y}";
 
             Process[] processlist = Process.GetProcesses();
 
@@ -66,8 +148,8 @@ namespace send_keys
                 }
             }
 
-            int index = comboBox1.FindString("Портал муниципальной");
-            comboBox1.SelectedIndex = index;
+            //int index = comboBox1.FindString("Портал муниципальной");
+            //comboBox1.SelectedIndex = index;
         }
                
         //Выбор целевого окна для симуляции
@@ -131,9 +213,21 @@ namespace send_keys
             {
                 if ((this.listBox2.Items[i].ToString() == "-ЛКМ-") || (this.listBox2.Items[i].ToString() == "-ПКМ-"))
                 {
-                    SendKeys.Send("Должна быть нажата какая кнопка мыши");
-                    Thread.Sleep(Convert.ToInt32(timer1));
 
+                    if (this.listBox2.Items[i].ToString() == "-ЛКМ-")
+                    {
+                        this.listBox3.Items.Add(this.listBox2.Items[i].ToString());
+                        MouseOperations.SetCursorPosition(lkm_mousepoint);
+                        MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown | MouseOperations.MouseEventFlags.LeftUp, pkm_mousepoint);
+
+                    }
+                    if (this.listBox2.Items[i].ToString() == "-ПКМ-")
+                    {
+                        this.listBox3.Items.Add(this.listBox2.Items[i].ToString());
+                        MouseOperations.SetCursorPosition(pkm_mousepoint);
+                        MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown | MouseOperations.MouseEventFlags.RightUp, pkm_mousepoint);
+                    }
+                    Thread.Sleep(Convert.ToInt32(timer1));
                 }
                 else
                 {
@@ -182,6 +276,49 @@ namespace send_keys
                 listBox2.Items.RemoveAt(listBox2.SelectedIndex);
             else
                 toolStripStatusLabel1.Text = ("Выберите элемент");
+        }
+
+        //Запуск отслеживания ЛКМ
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            mouse_L_Timer.Start();
+        }
+        //Запуск отслеживания ПКМ
+        private void button5_Click(object sender, EventArgs e)
+        {
+            mouse_R_Timer.Start();
+        }
+
+        //Таймер на отслеживание ЛКМ
+        private void mouse_L_Timer_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = $"Начало фиксации координат ЛКМ";
+            if (GetAsyncKeyState(Keys.LButton) != 0)
+            {
+                lkm_mousepoint = MouseOperations.GetCursorPosition();
+                toolStripStatusLabel1.Text = $"Координаты ЛКМ зафиксированы: {lkm_mousepoint.X}:{lkm_mousepoint.Y}";
+                mouse_L_Timer.Stop();
+            }
+        }
+
+        //Таймер на отслеживания ПКМ
+        private void mouse_R_Timer_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = $"Начало фиксации координат ПКМ";
+
+            if (GetAsyncKeyState(Keys.RButton) != 0)
+            {
+                pkm_mousepoint = MouseOperations.GetCursorPosition();
+                toolStripStatusLabel1.Text = $"Координаты ПКМ зафиксированы: {pkm_mousepoint.X}:{pkm_mousepoint.Y}";
+                mouse_R_Timer.Stop();
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            MouseOperations.SetCursorPosition(pkm_mousepoint);
+            //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.Move, pkm_mousepoint);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown | MouseOperations.MouseEventFlags.RightUp, pkm_mousepoint);
         }
     }
 }

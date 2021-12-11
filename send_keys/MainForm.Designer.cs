@@ -50,6 +50,11 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.mouse_L_Timer = new System.Windows.Forms.Timer(this.components);
+            this.mouse_R_Timer = new System.Windows.Forms.Timer(this.components);
+            this.button6 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,21 +127,21 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(125, 20);
             this.textBox1.TabIndex = 26;
-            this.textBox1.Text = "3";
+            this.textBox1.Text = "1";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(149, 272);
+            this.textBox2.Location = new System.Drawing.Point(150, 268);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(216, 20);
+            this.textBox2.Size = new System.Drawing.Size(215, 20);
             this.textBox2.TabIndex = 28;
-            this.textBox2.Text = "10";
+            this.textBox2.Text = "2";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(13, 274);
+            this.label5.Location = new System.Drawing.Point(14, 270);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(130, 15);
             this.label5.TabIndex = 27;
@@ -171,9 +176,9 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(251, 302);
+            this.textBox3.Location = new System.Drawing.Point(252, 289);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(114, 20);
+            this.textBox3.Size = new System.Drawing.Size(113, 20);
             this.textBox3.TabIndex = 34;
             this.textBox3.Text = "10";
             // 
@@ -181,7 +186,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(13, 304);
+            this.label6.Location = new System.Drawing.Point(14, 291);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(232, 15);
             this.label6.TabIndex = 33;
@@ -209,7 +214,8 @@
             this.listBox3.ItemHeight = 14;
             this.listBox3.Location = new System.Drawing.Point(388, 63);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(176, 186);
+            this.listBox3.ScrollAlwaysVisible = true;
+            this.listBox3.Size = new System.Drawing.Size(176, 144);
             this.listBox3.TabIndex = 36;
             // 
             // listBox1
@@ -256,11 +262,52 @@
             this.label7.TabIndex = 37;
             this.label7.Text = "Лог симуляции";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(16, 309);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(174, 25);
+            this.button1.TabIndex = 38;
+            this.button1.Text = "Запись координат для ЛКМ";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(196, 309);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(169, 25);
+            this.button5.TabIndex = 39;
+            this.button5.Text = "Запись координат для ПКМ";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // mouse_L_Timer
+            // 
+            this.mouse_L_Timer.Tick += new System.EventHandler(this.mouse_L_Timer_Tick);
+            // 
+            // mouse_R_Timer
+            // 
+            this.mouse_R_Timer.Tick += new System.EventHandler(this.mouse_R_Timer_Tick);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(388, 291);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(169, 25);
+            this.button6.TabIndex = 40;
+            this.button6.Text = "Запуск";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(583, 420);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.listBox3);
             this.Controls.Add(this.statusStrip1);
@@ -312,6 +359,11 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Timer mouse_L_Timer;
+        private System.Windows.Forms.Timer mouse_R_Timer;
+        private System.Windows.Forms.Button button6;
     }
 }
 
