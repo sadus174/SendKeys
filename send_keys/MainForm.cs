@@ -17,6 +17,7 @@ namespace send_keys
 {
     public partial class MainForm : Form
     {
+        //Класс для симуляции действий мыши
         public class MouseOperations
         {
             [Flags]
@@ -85,6 +86,7 @@ namespace send_keys
                 }
             }
         }
+
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
         [DllImport("user32.dll", SetLastError = true)]
@@ -94,7 +96,6 @@ namespace send_keys
         //Для отслеживания ПКМ и ЛКМ и фиксации координат
         [DllImport("user32.dll")]
         public static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
-        
         bool isLButtonDown()
         {
             Int16 state = GetAsyncKeyState(Keys.LButton);
@@ -173,6 +174,8 @@ namespace send_keys
         //Запуск симуляции
         private void button3_Click_1(object sender, EventArgs e)
         {
+            //Очистка listBox3
+            listBox3.Items.Clear();
             //Задержка между отправками клавиш
             timer1 = set_dec_separation(textBox1.Text);
             //Задержка между командами
@@ -231,7 +234,8 @@ namespace send_keys
                 else
                 {
                     SendKeys.Send(this.listBox2.Items[i].ToString());
-                    this.listBox3.Items.Add(this.listBox2.Items[i].ToString());  
+                    this.listBox3.Items.Add(this.listBox2.Items[i].ToString());
+                    Thread.Sleep(Convert.ToInt32(timer1));
                 }
                 //если команда последняя, то не выполнять задержку потока
                 if (i != this.listBox2.Items.Count - 1)
@@ -242,7 +246,6 @@ namespace send_keys
                 }
                 //Установка фокуса на только что добавленной строке
                 listBox3.SelectedIndex = listBox3.Items.Count - 1;
-
             }
             //Количество оставшихся итераций
             count_pos = count_pos - 1;
@@ -320,6 +323,11 @@ namespace send_keys
             MouseOperations.SetCursorPosition(pkm_mousepoint);
             //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.Move, pkm_mousepoint);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown | MouseOperations.MouseEventFlags.RightUp, pkm_mousepoint);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
