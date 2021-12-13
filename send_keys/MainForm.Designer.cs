@@ -109,7 +109,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.SystemColors.Window;
-            this.label3.Location = new System.Drawing.Point(13, 249);
+            this.label3.Location = new System.Drawing.Point(13, 234);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(221, 15);
             this.label3.TabIndex = 25;
@@ -117,7 +117,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(240, 247);
+            this.textBox1.Location = new System.Drawing.Point(240, 232);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(125, 20);
             this.textBox1.TabIndex = 26;
@@ -126,7 +126,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(150, 268);
+            this.textBox2.Location = new System.Drawing.Point(150, 253);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(215, 20);
             this.textBox2.TabIndex = 28;
@@ -138,7 +138,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.SystemColors.Window;
-            this.label5.Location = new System.Drawing.Point(14, 270);
+            this.label5.Location = new System.Drawing.Point(14, 255);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(130, 15);
             this.label5.TabIndex = 27;
@@ -146,7 +146,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(196, 336);
+            this.button3.Location = new System.Drawing.Point(196, 332);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(169, 25);
             this.button3.TabIndex = 30;
@@ -156,7 +156,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(16, 336);
+            this.button2.Location = new System.Drawing.Point(16, 332);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(174, 25);
             this.button2.TabIndex = 31;
@@ -175,7 +175,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(252, 289);
+            this.textBox3.Location = new System.Drawing.Point(252, 274);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(113, 20);
             this.textBox3.TabIndex = 34;
@@ -187,7 +187,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.ForeColor = System.Drawing.SystemColors.Window;
-            this.label6.Location = new System.Drawing.Point(14, 291);
+            this.label6.Location = new System.Drawing.Point(14, 276);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(232, 15);
             this.label6.TabIndex = 33;
@@ -254,7 +254,7 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(169, 172);
             this.listBox2.TabIndex = 22;
-            this.toolTip2.SetToolTip(this.listBox2, "Нажмите на нужную клавишу для удаления её из списка симуляции");
+            this.toolTip1.SetToolTip(this.listBox2, "Нажмите на нужную клавишу для удаления её из списка симуляции");
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // label7
@@ -270,7 +270,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 309);
+            this.button1.Location = new System.Drawing.Point(16, 305);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(174, 25);
             this.button1.TabIndex = 38;
@@ -280,7 +280,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(196, 309);
+            this.button5.Location = new System.Drawing.Point(196, 305);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(169, 25);
             this.button5.TabIndex = 39;

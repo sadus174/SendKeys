@@ -105,7 +105,10 @@ namespace send_keys
         int timer2 = Properties.Settings.Default.timer2;
         //Переменная типа MousePoint для запоминания нужного местоположения курсора
         MouseOperations.MousePoint lkm_mousepoint;
-        MouseOperations.MousePoint pkm_mousepoint; 
+        MouseOperations.MousePoint pkm_mousepoint;
+        //Глобальная переменная для отслеживания горячей клавиши
+        Keys lstKeyPressed;
+
 
         //Использование в качестве разделителя целой и дробной части , и .
         public int set_dec_separation (string value)
@@ -220,6 +223,7 @@ namespace send_keys
         //Метод для симуляции нажатия клавишь и формирования задержки между тактами и циклами
         private void timer2_command_Tick(object sender, EventArgs e)
         {
+
             //Перебор списка симуляционных клавиш
             for (int i = 0; i < this.listBox2.Items.Count; i++)
             {
@@ -280,8 +284,7 @@ namespace send_keys
             toolStripStatusLabel1.Text = ("Программа не активна");
             progressbar1.Value = 0;
         }
-
-        //Удаление клавишь из назначения симуляции
+        //Удаление клавиш из списка назначения симуляции
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox2.SelectedIndex != -1)
@@ -289,7 +292,6 @@ namespace send_keys
             else
                 toolStripStatusLabel1.Text = ("Выберите элемент");
         }
-
         //Запуск отслеживания ЛКМ
         private void button1_Click_1(object sender, EventArgs e)
         {
