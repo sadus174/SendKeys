@@ -96,17 +96,13 @@ namespace send_keys
         //Для отслеживания ПКМ и ЛКМ и фиксации координат
         [DllImport("user32.dll")]
         public static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
-        bool isLButtonDown()
-        {
-            Int16 state = GetAsyncKeyState(Keys.LButton);
-            return (state & 0x8000) != 0;
-        }
-
-        public int count_pos;
+        
+        //Объявление служебных переменных
+        public int count_pos = Properties.Settings.Default.count_iter;
         IntPtr windows_Handle;
         string name_window;
-        int timer1;
-        int timer2;
+        int timer1 = Properties.Settings.Default.timer1;
+        int timer2 = Properties.Settings.Default.timer2;
         //Переменная типа MousePoint для запоминания нужного местоположения курсора
         MouseOperations.MousePoint lkm_mousepoint;
         MouseOperations.MousePoint pkm_mousepoint; 
@@ -304,7 +300,6 @@ namespace send_keys
         {
             mouse_R_Timer.Start();
         }
-
         //Таймер на отслеживание ЛКМ
         private void mouse_L_Timer_Tick(object sender, EventArgs e)
         {
@@ -319,7 +314,6 @@ namespace send_keys
                 mouse_L_Timer.Stop();
             }
         }
-
         //Таймер на отслеживания ПКМ
         private void mouse_R_Timer_Tick(object sender, EventArgs e)
         {
@@ -335,19 +329,19 @@ namespace send_keys
                 mouse_R_Timer.Stop();
             }
         }
-
+        //Сохранение настроек приложение - таймер1
         private void textBox1_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.timer1 = Convert.ToInt32(textBox1.Text);
             Properties.Settings.Default.Save();
         }
-
+        //Сохранение настроек приложение - таймер2
         private void textBox2_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.timer2 = Convert.ToInt32(textBox2.Text);
             Properties.Settings.Default.Save();
         }
-
+        //Сохранение настроек приложение - количество итераций
         private void textBox3_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.count_iter = Convert.ToInt32(textBox3.Text);
