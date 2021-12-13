@@ -1,7 +1,27 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="send_keys.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="par_lkm_x" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">126</Value>
+    </Setting>
+    <Setting Name="par_lkm_y" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">495</Value>
+    </Setting>
+    <Setting Name="par_pkm_x" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">63</Value>
+    </Setting>
+    <Setting Name="par_pkm_y" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">416</Value>
+    </Setting>
+    <Setting Name="timer1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="timer2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="count_iter" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

@@ -76,7 +76,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.SystemColors.Window;
-            this.label4.Location = new System.Drawing.Point(13, 13);
+            this.label4.Location = new System.Drawing.Point(15, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(139, 15);
             this.label4.TabIndex = 11;
@@ -109,7 +109,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.SystemColors.Window;
-            this.label3.Location = new System.Drawing.Point(13, 248);
+            this.label3.Location = new System.Drawing.Point(13, 249);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(221, 15);
             this.label3.TabIndex = 25;
@@ -117,11 +117,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(240, 246);
+            this.textBox1.Location = new System.Drawing.Point(240, 247);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(125, 20);
             this.textBox1.TabIndex = 26;
             this.textBox1.Text = "1";
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // textBox2
             // 
@@ -130,6 +131,7 @@
             this.textBox2.Size = new System.Drawing.Size(215, 20);
             this.textBox2.TabIndex = 28;
             this.textBox2.Text = "2";
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // label5
             // 
@@ -164,6 +166,8 @@
             // 
             // progressbar1
             // 
+            this.progressbar1.BackColor = System.Drawing.Color.Black;
+            this.progressbar1.ForeColor = System.Drawing.Color.Red;
             this.progressbar1.Location = new System.Drawing.Point(18, 367);
             this.progressbar1.Name = "progressbar1";
             this.progressbar1.Size = new System.Drawing.Size(529, 25);
@@ -176,6 +180,7 @@
             this.textBox3.Size = new System.Drawing.Size(113, 20);
             this.textBox3.TabIndex = 34;
             this.textBox3.Text = "10";
+            this.textBox3.Leave += new System.EventHandler(this.textBox3_Leave);
             // 
             // label6
             // 

@@ -22,5 +22,89 @@ namespace send_keys.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("126")]
+        public int par_lkm_x {
+            get {
+                return ((int)(this["par_lkm_x"]));
+            }
+            set {
+                this["par_lkm_x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("495")]
+        public int par_lkm_y {
+            get {
+                return ((int)(this["par_lkm_y"]));
+            }
+            set {
+                this["par_lkm_y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("63")]
+        public int par_pkm_x {
+            get {
+                return ((int)(this["par_pkm_x"]));
+            }
+            set {
+                this["par_pkm_x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("416")]
+        public int par_pkm_y {
+            get {
+                return ((int)(this["par_pkm_y"]));
+            }
+            set {
+                this["par_pkm_y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int timer1 {
+            get {
+                return ((int)(this["timer1"]));
+            }
+            set {
+                this["timer1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int timer2 {
+            get {
+                return ((int)(this["timer2"]));
+            }
+            set {
+                this["timer2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int count_iter {
+            get {
+                return ((int)(this["count_iter"]));
+            }
+            set {
+                this["count_iter"] = value;
+            }
+        }
     }
 }

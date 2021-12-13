@@ -107,15 +107,9 @@ namespace send_keys
         string name_window;
         int timer1;
         int timer2;
-
-        //Координаты для перемещений курсора мыши
-        //int pkm_x = 63;
-        //int pkm_y = 416;
-        //int lkm_x = 126;
-        //int lkm_y = 495;
         //Переменная типа MousePoint для запоминания нужного местоположения курсора
-        MouseOperations.MousePoint lkm_mousepoint = new MouseOperations.MousePoint(126,495);
-        MouseOperations.MousePoint pkm_mousepoint = new MouseOperations.MousePoint(63, 416);
+        MouseOperations.MousePoint lkm_mousepoint;
+        MouseOperations.MousePoint pkm_mousepoint; 
 
         //Использование в качестве разделителя целой и дробной части , и .
         public int set_dec_separation (string value)
@@ -134,6 +128,26 @@ namespace send_keys
         //Загрузка формы. Установление статуса и полей значениями по умолчанию. Так же получение списка открытых окон
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Координаты для перемещений курсора мыши
+            //int pkm_x = 63;
+            //int pkm_y = 416;
+            //int lkm_x = 126;
+            //int lkm_y = 495;
+
+            //Инициализируем значения элементов mousePoint из настроек приложения
+            int pX = Properties.Settings.Default.par_pkm_x;
+            int pY = Properties.Settings.Default.par_pkm_y;
+            pkm_mousepoint = new MouseOperations.MousePoint(pX,pY);
+            int lX = Properties.Settings.Default.par_lkm_x;
+            int lY = Properties.Settings.Default.par_lkm_y;
+            lkm_mousepoint = new MouseOperations.MousePoint(lX, lY);
+            //Иницилизация длинны циклов из настроек программы
+            textBox1.Text = Properties.Settings.Default.timer1.ToString();
+            textBox2.Text = Properties.Settings.Default.timer2.ToString();
+            textBox3.Text = Properties.Settings.Default.count_iter.ToString();
+
+
+            //MessageBox.Show($"lX:{lX}, lY:{lY}, pX:{pX}, pY:{pY}");
             toolStripStatusLabel1.Text = ("Программа не активна");
             button1.Text = $"ЛКМ {lkm_mousepoint.X}:{lkm_mousepoint.Y}";
             button5.Text = $"ПКМ {pkm_mousepoint.X}:{pkm_mousepoint.Y}";
@@ -215,13 +229,11 @@ namespace send_keys
             {
                 if ((this.listBox2.Items[i].ToString() == "-ЛКМ-") || (this.listBox2.Items[i].ToString() == "-ПКМ-"))
                 {
-
                     if (this.listBox2.Items[i].ToString() == "-ЛКМ-")
                     {
                         this.listBox3.Items.Add(this.listBox2.Items[i].ToString());
                         MouseOperations.SetCursorPosition(lkm_mousepoint);
                         MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown | MouseOperations.MouseEventFlags.LeftUp, pkm_mousepoint);
-
                     }
                     if (this.listBox2.Items[i].ToString() == "-ПКМ-")
                     {
@@ -301,6 +313,9 @@ namespace send_keys
             {
                 lkm_mousepoint = MouseOperations.GetCursorPosition();
                 toolStripStatusLabel1.Text = $"Координаты ЛКМ зафиксированы: {lkm_mousepoint.X}:{lkm_mousepoint.Y}";
+                Properties.Settings.Default.par_lkm_x = lkm_mousepoint.X;
+                Properties.Settings.Default.par_lkm_y = lkm_mousepoint.Y;
+                Properties.Settings.Default.Save();
                 mouse_L_Timer.Stop();
             }
         }
@@ -314,20 +329,29 @@ namespace send_keys
             {
                 pkm_mousepoint = MouseOperations.GetCursorPosition();
                 toolStripStatusLabel1.Text = $"Координаты ПКМ зафиксированы: {pkm_mousepoint.X}:{pkm_mousepoint.Y}";
+                Properties.Settings.Default.par_pkm_x = pkm_mousepoint.X;
+                Properties.Settings.Default.par_pkm_y = pkm_mousepoint.Y;
+                Properties.Settings.Default.Save();
                 mouse_R_Timer.Stop();
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void textBox1_Leave(object sender, EventArgs e)
         {
-            MouseOperations.SetCursorPosition(pkm_mousepoint);
-            //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.Move, pkm_mousepoint);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown | MouseOperations.MouseEventFlags.RightUp, pkm_mousepoint);
+            Properties.Settings.Default.timer1 = Convert.ToInt32(textBox1.Text);
+            Properties.Settings.Default.Save();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void textBox2_Leave(object sender, EventArgs e)
         {
+            Properties.Settings.Default.timer2 = Convert.ToInt32(textBox2.Text);
+            Properties.Settings.Default.Save();
+        }
 
+        private void textBox3_Leave(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.count_iter = Convert.ToInt32(textBox3.Text);
+            Properties.Settings.Default.Save();
         }
     }
 }
