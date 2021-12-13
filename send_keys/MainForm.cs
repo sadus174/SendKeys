@@ -136,9 +136,8 @@ namespace send_keys
             toolStripStatusLabel1.Text = ("Программа не активна");
             button1.Text = $"ЛКМ {lkm_mousepoint.X}:{lkm_mousepoint.Y}";
             button5.Text = $"ПКМ {pkm_mousepoint.X}:{pkm_mousepoint.Y}";
-
+            //Получение списка всех процессов
             Process[] processlist = Process.GetProcesses();
-
             //Получение списка открытых окон и наполнение combobox'a
             foreach (Process process in processlist)
             {
@@ -147,7 +146,7 @@ namespace send_keys
                     comboBox1.Items.Add(Convert.ToString(process.MainWindowTitle));
                 }
             }
-
+            //Предвыбор нужного окна
             //int index = comboBox1.FindString("Портал муниципальной");
             //comboBox1.SelectedIndex = index;
         }
@@ -241,6 +240,8 @@ namespace send_keys
                     //listBox3.Items.Add("Нажата клавиша" + this.listBox2.Items[i].ToString());
                     Thread.Sleep(Convert.ToInt32(timer1));
                 }
+                //Установка фокуса на только что добавленной строке
+                listBox3.SelectedIndex = listBox3.Items.Count - 1;
 
             }
             //Количество оставшихся итераций

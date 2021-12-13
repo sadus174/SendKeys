@@ -54,7 +54,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.mouse_L_Timer = new System.Windows.Forms.Timer(this.components);
             this.mouse_R_Timer = new System.Windows.Forms.Timer(this.components);
-            this.button6 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -215,7 +216,7 @@
             this.listBox3.Location = new System.Drawing.Point(388, 63);
             this.listBox3.Name = "listBox3";
             this.listBox3.ScrollAlwaysVisible = true;
-            this.listBox3.Size = new System.Drawing.Size(176, 144);
+            this.listBox3.Size = new System.Drawing.Size(176, 326);
             this.listBox3.TabIndex = 36;
             // 
             // listBox1
@@ -239,6 +240,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(174, 172);
             this.listBox1.TabIndex = 20;
+            this.toolTip1.SetToolTip(this.listBox1, "Нажмите на нужную клавишу для добавления в список симуляции\r\n");
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // listBox2
@@ -250,6 +252,7 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(169, 172);
             this.listBox2.TabIndex = 22;
+            this.toolTip2.SetToolTip(this.listBox2, "Нажмите на нужную клавишу для удаления её из списка симуляции");
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // label7
@@ -290,22 +293,15 @@
             // 
             this.mouse_R_Timer.Tick += new System.EventHandler(this.mouse_R_Timer_Tick);
             // 
-            // button6
+            // toolTip1
             // 
-            this.button6.Location = new System.Drawing.Point(388, 291);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(169, 25);
-            this.button6.TabIndex = 40;
-            this.button6.Text = "Запуск";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.toolTip1.ToolTipTitle = "Нажмите на клавишу что бы добавить";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(583, 420);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
@@ -363,7 +359,8 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Timer mouse_L_Timer;
         private System.Windows.Forms.Timer mouse_R_Timer;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip2;
     }
 }
 
