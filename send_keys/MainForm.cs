@@ -106,9 +106,6 @@ namespace send_keys
         //Переменная типа MousePoint для запоминания нужного местоположения курсора
         MouseOperations.MousePoint lkm_mousepoint;
         MouseOperations.MousePoint pkm_mousepoint;
-        //Глобальная переменная для отслеживания горячей клавиши
-        Keys lstKeyPressed;
-
 
         //Использование в качестве разделителя целой и дробной части , и .
         public int set_dec_separation (string value)
@@ -127,12 +124,6 @@ namespace send_keys
         //Загрузка формы. Установление статуса и полей значениями по умолчанию. Так же получение списка открытых окон
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Координаты для перемещений курсора мыши
-            //int pkm_x = 63;
-            //int pkm_y = 416;
-            //int lkm_x = 126;
-            //int lkm_y = 495;
-
             //Инициализируем значения элементов mousePoint из настроек приложения
             int pX = Properties.Settings.Default.par_pkm_x;
             int pY = Properties.Settings.Default.par_pkm_y;
@@ -144,10 +135,7 @@ namespace send_keys
             textBox1.Text = Properties.Settings.Default.timer1.ToString();
             textBox2.Text = Properties.Settings.Default.timer2.ToString();
             textBox3.Text = Properties.Settings.Default.count_iter.ToString();
-
-
-            //MessageBox.Show($"lX:{lX}, lY:{lY}, pX:{pX}, pY:{pY}");
-            toolStripStatusLabel1.Text = ("Программа не активна");
+            toolStripStatusLabel1.Text = $"Настройки системы координат для мыши загружены. lX:{lX}, lY:{lY}, pX:{pX}, pY:{pY}";                        
             button1.Text = $"ЛКМ {lkm_mousepoint.X}:{lkm_mousepoint.Y}";
             button5.Text = $"ПКМ {pkm_mousepoint.X}:{pkm_mousepoint.Y}";
             //Получение списка всех процессов
@@ -161,8 +149,8 @@ namespace send_keys
                 }
             }
             //Предвыбор нужного окна
-            //int index = comboBox1.FindString("Портал муниципальной");
-            //comboBox1.SelectedIndex = index;
+            int index = comboBox1.FindString("Отчеты на подпись");
+            comboBox1.SelectedIndex = index;
         }
                
         //Выбор целевого окна для симуляции
@@ -223,7 +211,6 @@ namespace send_keys
         //Метод для симуляции нажатия клавишь и формирования задержки между тактами и циклами
         private void timer2_command_Tick(object sender, EventArgs e)
         {
-
             //Перебор списка симуляционных клавиш
             for (int i = 0; i < this.listBox2.Items.Count; i++)
             {
@@ -259,8 +246,8 @@ namespace send_keys
                 //Установка фокуса на только что добавленной строке
                 listBox3.SelectedIndex = listBox3.Items.Count - 1;
             }
-            //Количество оставшихся итераций
-            count_pos = count_pos - 1;
+            //Уменьшение счётчика итераций
+            count_pos = count_pos - 1;                                    
             //Выполнение кода определённое количество раз, в случае превышения количества - остановка таймера
             if (count_pos != 0)
             {
